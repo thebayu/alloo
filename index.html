@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Semangat Dinda!</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #fce4ec;
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .emoji {
+      font-size: 6em;
+      animation: goyang 1s infinite alternate;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 0.2em 0;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin: 0.5em;
+    }
+
+    .btn {
+      background-color: #ec407a;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #d81b60;
+    }
+
+    @keyframes goyang {
+      from { transform: rotate(-10deg); }
+      to { transform: rotate(10deg); }
+    }
+
+    .fade {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="musik" autoplay loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+    Browsermu tidak mendukung musik :(
+  </audio>
+
+  <div id="halaman">
+    <div class="emoji">🌞</div>
+    <h1>Selamat Pagiii, Dinda! ☀️</h1>
+    <p>Kamu lucu banget pagi ini. Yuk klik tombol di bawah~</p>
+    <button class="btn" onclick="nextPage()">Klik Aku 😆</button>
+  </div>
+
+  <script>
+    let halaman = document.getElementById("halaman");
+
+    function nextPage() {
+      halaman.classList.add("fade");
+      setTimeout(() => {
+        halaman.innerHTML = `
+          <div class="emoji">💪</div>
+          <h1>Semangatt yaa, Jangan Lupa Istirahat 💤</h1>
+          <p>Kopi udah oke, sekarang hati dan semangat juga harus happy 😄</p>
+        `;
+        halaman.classList.remove("fade");
+        halaman.classList.add("show");
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
