@@ -2,97 +2,113 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Semangat Dinda!</title>
+  <title>Semangat Yaaa!</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: #fce4ec;
+      background: linear-gradient(135deg, #fce4ec, #e1f5fe);
       font-family: 'Comic Sans MS', cursive;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       text-align: center;
       overflow: hidden;
     }
 
     .emoji {
-      font-size: 6em;
+      font-size: 5em;
       animation: goyang 1s infinite alternate;
     }
 
     h1 {
-      font-size: 3em;
-      margin: 0.2em 0;
+      font-size: 2.5em;
+      margin: 0.3em;
     }
 
     p {
-      font-size: 1.3em;
+      font-size: 1.4em;
       margin: 0.5em;
+      max-width: 80%;
     }
 
     .btn {
-      background-color: #ec407a;
+      margin-top: 30px;
+      background-color: #f06292;
       color: white;
       border: none;
       padding: 15px 30px;
       border-radius: 12px;
       font-size: 1.2em;
       cursor: pointer;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease;
-      margin-top: 20px;
     }
 
     .btn:hover {
-      background-color: #d81b60;
+      background-color: #ec407a;
     }
 
     @keyframes goyang {
-      from { transform: rotate(-10deg); }
-      to { transform: rotate(10deg); }
-    }
-
-    .fade {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .show {
-      opacity: 1;
+      from { transform: rotate(-8deg); }
+      to { transform: rotate(8deg); }
     }
   </style>
 </head>
 <body>
 
-  <audio id="musik" autoplay loop>
-    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
-    Browsermu tidak mendukung musik :(
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Maaf, browser kamu nggak mendukung musik.
   </audio>
 
-  <div id="halaman">
-    <div class="emoji">🌞</div>
-    <h1>Haallloooooo Dindaa, Selamat Pagiiiii! ☀️</h1>
-    <h2>Have a Nice Day!!!😎</h2>
-    <button class="btn" onclick="nextPage()">Klik Aku 😆</button>
-  </div>
+  <div class="emoji">🌞</div>
+  <h1 id="judul">Selamat pagiiii cintaaa!!</h1>
+  <p id="pesan">Semangat kerjanyaaaa 💪</p>
+  <button class="btn" onclick="nextSlide()"><b>Klik</b></button>
 
   <script>
-    let halaman = document.getElementById("halaman");
+    const slides = [
+      {
+        emoji: "🌞",
+        judul: "Selamat pagiiii cintaaa!!",
+        pesan: "Semangat kerjanyaaa 💪" 
+      },
+      {
+        emoji: "☕",
+        judul: "Kopi udah siap lhoo",
+        pesan: "Tapi kamu lebih manis dari gulanya 😝"
+      },
+      {
+        emoji: "💼",
+        judul: "Gaskeun kerjanyaaa",
+        pesan: "Kerjaan banyak? Kamu pasti bisa 💪"
+      },
+      {
+        emoji: "💖",
+        judul: "Kamu hebat itu ga ada capeknya yaa!!",
+        pesan: "Udah kerja, tetep senyum, tetep gemesin 😍"
+      },
+      {
+        emoji: "🛌",
+        judul: "Semangat yaa,",
+        pesan: "Jangan lupa istirahat jugaaa 😴"
+      }
+    ];
 
-    function nextPage() {
-      halaman.classList.add("fade");
-      setTimeout(() => {
-        halaman.innerHTML = `
-          <div class="emoji">💪</div>
-          <h1>Semangatt kerjanyaaa, Jangan Lupa Istirahat Kalo Cape💤</h1>
-          <h2>Kerja boleh serius, Tapi jangan lupa, kesehatan juga harus diuruuss!! ✨</h2>
-        `;
-        halaman.classList.remove("fade");
-        halaman.classList.add("show");
-      }, 800);
+    let index = 0;
+
+    function nextSlide() {
+      index++;
+      if (index >= slides.length) {
+        index = slides.length - 1; // stop di slide terakhir
+      }
+
+      document.querySelector('.emoji').textContent = slides[index].emoji;
+      document.getElementById('judul').textContent = slides[index].judul;
+      document.getElementById('pesan').textContent = slides[index].pesan;
     }
   </script>
 
