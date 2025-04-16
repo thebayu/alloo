@@ -16,6 +16,7 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
+      position: relative;
     }
 
     .emoji {
@@ -55,48 +56,49 @@
       from { transform: rotate(-8deg); }
       to { transform: rotate(8deg); }
     }
+
+    .heart {
+      position: absolute;
+      font-size: 1.5em;
+      color: #ff69b4;
+      animation: jatuh 5s linear infinite;
+      user-select: none;
+    }
+
+    @keyframes jatuh {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Musik -->
   <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c7e5f14298.mp3?filename=cute-ukulele-142998.mp3" type="audio/mpeg">
-  Maaf, browser kamu nggak mendukung musik.
-</audio>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c7e5f14298.mp3?filename=cute-ukulele-142998.mp3" type="audio/mpeg">
+    Maaf, browser kamu nggak mendukung musik.
+  </audio>
 
-
+  <!-- Konten -->
   <div class="emoji">🌞</div>
   <h1 id="judul">Selamat pagiiii cintaaa!!</h1>
-  <p id="pesan">Semangat kerjanyaaaa 💪</p>
+  <p id="pesan">Semangat kerjanyaaa 💪</p>
   <button class="btn" onclick="nextSlide()"><b>Klik</b></button>
 
+  <!-- Love Jatuh -->
   <script>
     const slides = [
-      {
-        emoji: "🌞",
-        judul: "Selamat pagiiii cintaaa!!",
-        pesan: "Semangat kerjanyaaa 💪" 
-      },
-      {
-        emoji: "☕",
-        judul: "Kopi udah siap lhoo",
-        pesan: "Tapi kamu lebih manis dari gulanya 😝"
-      },
-      {
-        emoji: "💼",
-        judul: "Gaskeun kerjanyaaa",
-        pesan: "Kerjaan banyak? Kamu pasti bisa 💪"
-      },
-      {
-        emoji: "💖",
-        judul: "Kamu hebat itu ga ada capeknya yaa!!",
-        pesan: "Udah kerja, tetep senyum, tetep gemesin 😍"
-      },
-      {
-        emoji: "🛌",
-        judul: "Semangat yaa,",
-        pesan: "Jangan lupa istirahat jugaaa 😴"
-      }
+      { emoji: "🌞", judul: "Selamat pagiiii cintaaa!!", pesan: "Semangat kerjanyaaa 💪" },
+      { emoji: "☕", judul: "Kopi udah siap lhoo", pesan: "Tapi kamu lebih manis dari gulanya 😝" },
+      { emoji: "💼", judul: "Gaskeun kerjanyaaa", pesan: "Kerjaan banyak? Kamu pasti bisa 💪" },
+      { emoji: "💖", judul: "Kamu itu ga ada capeknya yaa!!", pesan: "Udah kerja, tetep senyum, tetep gemesin 😍" },
+      { emoji: "🛌", judul: "Semangat yaa,", pesan: "Jangan lupa istirahat jugaaa 😴" }
     ];
 
     let index = 0;
@@ -104,13 +106,27 @@
     function nextSlide() {
       index++;
       if (index >= slides.length) {
-        index = slides.length - 1; // stop di slide terakhir
+        index = slides.length - 1;
       }
 
       document.querySelector('.emoji').textContent = slides[index].emoji;
       document.getElementById('judul').textContent = slides[index].judul;
       document.getElementById('pesan').textContent = slides[index].pesan;
     }
+
+    // Efek love jatuh
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }, 300);
   </script>
 
 </body>
